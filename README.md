@@ -1,6 +1,6 @@
 # Clean Structured Project - ASP.NET Core
 
-This template is for a clean structured ASP.NET Core web project, follows the Clean Architecture principles, SOLID design principles, and implements the Dependency Injection, Repository, and Unit of Work design pattern. It provides a standardized structure and organization for building robust and maintainable ASP.NET Core web applications with complete CRUD (Create, Read, Update, Delete) operations.
+This template is for a clean structured ASP.NET Core web project, follows the Clean Architecture principles, SOLID design principles, and implements the Dependency Injection, Repository, and Unit of Work design pattern, and utilizes Entity Framework Core for data access. It provides a standardized structure and organization for building robust and maintainable ASP.NET Core web applications with complete CRUD (Create, Read, Update, Delete) operations.
 
 ## Project Structure
 
@@ -38,16 +38,18 @@ This project template includes the following features:
 - **SOLID Design Principles**: The code adheres to SOLID principles (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion), making it easier to maintain and extend.
 - **Repository Pattern**: The repository pattern is used to abstract the data access layer and provide a consistent interface for working with data.
 - **Unit of Work Pattern**: The unit of work pattern helps manage transactions and ensures consistency when working with multiple repositories.
+- **Entity Framework Core**: The project utilizes Entity Framework Core as the ORM (Object-Relational Mapping) tool for data access.
 - **ASP.NET Core Web**: The project includes an ASP.NET Core web project that serves as the user interface layer, handling HTTP requests and responses.
+- **CRUD Operations**: The project template provides a foundation for implementing complete CRUD (Create, Read, Update, Delete) operations on entities using Entity Framework Core.
 - **Dependency Injection**: The project utilizes the built-in dependency injection container in ASP.NET Core, making it easy to manage and inject dependencies throughout the application.
 - **Unit Testing**: The solution includes separate test projects for unit testing the core, infrastructure, and UI layers.
 
 ## Usage
 
-The project template provides a starting point for implementing CRUD operations on entities. You can modify and extend the existing code to suit your specific application requirements. Here's an overview of the key components involved in the CRUD operations:
+The project template provides a starting point for implementing CRUD operations on entities using Entity Framework Core. You can modify and extend the existing code to suit your specific application requirements. Here's an overview of the key components involved in the CRUD operations:
 
 1. **Models**: The `Core` project contains the domain models representing the entities you want to perform CRUD operations on. Update the models or add new ones according to your domain.
-2. **Repositories**: The `Infrastructure` project contains repository implementations that handle data access operations. Modify the repositories or create new ones to match your data store and entity models.
+2. **Repositories**: The `Infrastructure` project contains repository implementations that handle data access operations using Entity Framework Core. Modify the repositories or create new ones to match your entity models and database structure.
 3. **Services**: The `Core` project contains services that encapsulate the business logic and orchestrate the operations on repositories. Update or create new services to handle CRUD operations on your entities.
 4. **Controllers**: The `UI` project contains controllers that handle HTTP requests and responses. Update or create new controllers to expose the CRUD endpoints for your entities.
 
@@ -57,16 +59,12 @@ Make sure to update the routes, validation, and error-handling logic to align wi
 
 I want you to know that contributions to this project are welcome. Please open an issue or submit a pull request if you have any ideas, bug fixes, or improvements.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use it as a base for your own projects.
-
-## Acknowledgments
-
-This project template is inspired by the Clean Architecture principles and design patterns advocated by Robert C. Martin (Uncle Bob) and other industry experts.
-
 ## Contact
 
 If you have any questions or need further assistance, please contact the project maintainer at [kawser2133@gmail.com](mailto:kawser2133@gmail.com).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Feel free to use it as a base for your own projects.
 
 Happy coding!
