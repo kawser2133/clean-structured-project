@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectMaster.Infrastructure.Data;
+using ProjectMaster.UI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +10,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.RegisterService();
 
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseRouting();
 

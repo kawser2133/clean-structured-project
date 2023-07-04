@@ -26,31 +26,37 @@ namespace ProjectMaster.Core.Services
             _productRepository = productRepository;
         }
 
+        public async Task<IEnumerable<ProductViewModel>> GetProducts()
+        {
+            return _productViewModelMapper.MapList(await _productRepository.GetAll());
+        }
+
+        public async Task<ProductViewModel> GetProduct(int id)
+        {
+            return _productViewModelMapper.MapModel(await _productRepository.GetById(id));
+        }
 
         public async Task<ProductViewModel> Create(ProductViewModel model)
         {
-            var data = _productMapper.MapModel(model);
-            return _productViewModelMapper.MapModel(await _productRepository.Create(data));
+            var entity = _productMapper.MapModel(model);
+            entity.EntryDate = DateTime.Now;
+
+            return _productViewModelMapper.MapModel(await _productRepository.Create(entity));
         }
 
-        public Task Delete(int id)
+        public async Task Update(ProductViewModel model)
         {
-            throw new NotImplementedException();
+            var entity = _productMapper.MapModel(model);
+            entity.UpdateDate = DateTime.Now;
+
+            await _productRepository.Update(entity);
         }
 
-        public Task<ProductViewModel> GetProduct(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _productRepository.GetById(id);
+            await _productRepository.Delete(entity);
         }
 
-        public Task<IEnumerable<ProductViewModel>> GetProducts()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(ProductViewModel model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
