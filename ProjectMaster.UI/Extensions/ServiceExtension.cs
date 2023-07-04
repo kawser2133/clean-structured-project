@@ -8,7 +8,7 @@ using ProjectMaster.Core.Mapper;
 using ProjectMaster.Core.Services;
 using ProjectMaster.Infrastructure.Repositories;
 
-namespace ProjectMaster.Web.Extensions
+namespace ProjectMaster.UI.Extensions
 {
     public static class ServiceExtension
     {
