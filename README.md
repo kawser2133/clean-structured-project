@@ -55,16 +55,14 @@ The project template provides a starting point for implementing CRUD operations 
 
 Make sure to update the routes, validation, and error-handling logic to align with your application requirements and best practices.
 
+## Authors
+
+If you have any questions or need further assistance, please contact the project author at [@kawser2133](https://www.github.com/kawser2133) || [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kawser2133)
+
 ## Contributing
 
-I want you to know that contributions to this project are welcome. Please open an issue or submit a pull request if you have any ideas, bug fixes, or improvements.
-
-## Contact
-
-If you have any questions or need further assistance, please contact the project maintainer at [kawser2133@gmail.com](mailto:kawser2133@gmail.com).
+I want you to know that contributions to this project are welcome. Please open an issue or submit a pull request if you have any ideas, bug fixes, or improvements.  
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE). Feel free to use it as a base for your own projects.
-
-Happy coding!
+This project is licensed under the [MIT License](LICENSE).
