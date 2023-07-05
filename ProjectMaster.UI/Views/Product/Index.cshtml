@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProductViewModel>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        Products
+        <a asp-action="Create" class="btn btn-success"> Create New</a>
+    </div>
+    <div class="card-body">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Code</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.IsActive</td>
+                        <td>
+                            <button class="btn btn-outline-info">Details</button>
+                            <button class="btn btn-outline-primary">Edit</button>
+                            <button class="btn btn-outline-danger">Delete</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

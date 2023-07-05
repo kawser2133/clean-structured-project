@@ -28,7 +28,7 @@ namespace ProjectMaster.Infrastructure.Repositories
         {
             var data = await _dbContext.Set<T>().FindAsync(id);
             if (data == null)
-                throw new EntityNotFoundException("No data found");
+                throw new NotFoundException("No data found");
             return data;
         }
 
