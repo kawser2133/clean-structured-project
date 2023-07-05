@@ -1,0 +1,45 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+
+    <div class="card-header">
+        @Model.Name
+    </div>
+
+    <div class="card-body">
+        <div class="mb-3">
+            <label asp-for="Code" class="form-label"></label>
+            <input asp-for="Code" class="form-control" readonly="readonly" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" readonly="readonly" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" readonly="readonly" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" readonly="readonly"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="IsActive" class="form-label">Active</label>
+            <input asp-for="IsActive" type="checkbox" class="form-check-input" />
+        </div>
+
+        <div class="d-grid d-md-flex justify-content-md-end">
+            <a asp-action="index" class="btn btn-secondary me-md-1">Back</a>
+        </div>
+    </div>
+
+</div>
