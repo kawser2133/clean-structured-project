@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Project.Infrastructure.Repositories
 {
+    //Unit of Work Pattern
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly ApplicationDbContext _dbContext;

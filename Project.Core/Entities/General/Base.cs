@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.Core.Entities.General
 {
+    //Base class for entities common properties
     public class Base<T>
     {
         [Key]
