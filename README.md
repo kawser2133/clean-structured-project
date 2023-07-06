@@ -27,7 +27,7 @@ To use this project template, follow the steps below:
 3. Open the solution in your preferred IDE (e.g., Visual Studio, Visual Studio Code).
 4. Build the solution to restore NuGet packages and compile the code.
 5. Configure the necessary database connection settings in the `appsettings.json` file of the Infrastructure project.
-6. Open the Package Manager Console and run the `Update-Database` command to create the database
+6. Open the Package Manager Console, select `Project.Infrastructure` project and run the `Update-Database` command to create the database
 7. Run the application by starting the UI project.
 
 ## Project Features
