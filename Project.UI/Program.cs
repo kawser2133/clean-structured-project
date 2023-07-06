@@ -22,9 +22,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
+//Please update your endpoint route here
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapDefaultControllerRoute();
+    //endpoints.MapDefaultControllerRoute();
+    endpoints.MapControllerRoute(name: "default", pattern: "{controller=Product}/{action=Index}/{Id?}");
 });
 
 app.Run();
