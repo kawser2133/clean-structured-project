@@ -20,6 +20,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseStaticFiles();
 app.UseRouting();
 
 //Please update your endpoint route here
