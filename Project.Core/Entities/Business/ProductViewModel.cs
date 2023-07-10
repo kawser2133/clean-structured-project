@@ -11,10 +11,10 @@ namespace Project.Core.Entities.General
     {
         public int Id { get; set; }
         [Required, StringLength(maximumLength: 8, MinimumLength = 2)]
-        public string? Code { get; set; }
+        public string Code { get; set; } = string.Empty;
         [Required, StringLength(maximumLength: 100, MinimumLength = 2)]
-        public string? Name { get; set; }
-        [Required]
+        public string Name { get; set; } = string.Empty;
+        [Required, Range(0.01, float.MaxValue)]
         public float Price { get; set; }
         [StringLength(maximumLength: 350)]
         public string? Description { get; set; }

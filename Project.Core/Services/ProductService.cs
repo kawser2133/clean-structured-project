@@ -37,6 +37,16 @@ namespace Project.Core.Services
             return _productViewModelMapper.MapModel(await _productRepository.GetById(id));
         }
 
+        public async Task<bool> IsExists(string key, string value)
+        {
+            return await _productRepository.IsExists(key, value);
+        }
+
+        public async Task<bool> IsExistsForUpdate(int id, string key, string value)
+        {
+            return await _productRepository.IsExistsForUpdate(id, key, value);
+        }
+
         public async Task<ProductViewModel> Create(ProductViewModel model)
         {
             //Mapping through AutoMapper

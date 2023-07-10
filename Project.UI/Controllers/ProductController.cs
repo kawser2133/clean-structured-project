@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Project.Core.Entities.General;
 using Project.Core.Interfaces.IServices;
 
@@ -59,6 +60,18 @@ namespace Project.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _productService.IsExists("Name", model.Name))
+                {
+                    ModelState.AddModelError("Exists", $"The product name- '{model.Name}' already exists");
+                    return View(model);
+                }
+
+                if (await _productService.IsExists("Code", model.Code))
+                {
+                    ModelState.AddModelError("Exists", $"The product code- '{model.Code}' already exists");
+                    return View(model);
+                }
+
                 try
                 {
                     var data = await _productService.Create(model);
@@ -94,6 +107,18 @@ namespace Project.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _productService.IsExistsForUpdate(model.Id, "Name", model.Name))
+                {
+                    ModelState.AddModelError("Exists", $"The product name- '{model.Name}' already exists");
+                    return View(model);
+                }
+
+                if (await _productService.IsExistsForUpdate(model.Id, "Code", model.Code))
+                {
+                    ModelState.AddModelError("Exists", $"The product code- '{model.Code}' already exists");
+                    return View(model);
+                }
+
                 try
                 {
                     await _productService.Update(model);

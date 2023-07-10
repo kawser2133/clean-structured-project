@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Project.Core.Exceptions;
 using Project.Core.Interfaces.IRepositories;
 using Project.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +17,7 @@ namespace Project.Infrastructure.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly ApplicationDbContext _dbContext;
+        protected DbSet<T> DbSet => _dbContext.Set<T>();
 
         public BaseRepository(ApplicationDbContext dbContext)
         {
@@ -32,6 +36,34 @@ namespace Project.Infrastructure.Repositories
                 throw new NotFoundException("No data found");
             return data;
         }
+
+        public async Task<bool> IsExists(string key, string value)
+        {
+            var parameter = Expression.Parameter(typeof(T), "x");
+            var property = Expression.Property(parameter, key);
+            var constant = Expression.Constant(value);
+            var equality = Expression.Equal(property, constant);
+            var lambda = Expression.Lambda<Func<T, bool>>(equality, parameter);
+
+            return await _dbContext.Set<T>().AnyAsync(lambda);
+        }
+
+        public async Task<bool> IsExistsForUpdate<Tid>(Tid id, string key, string value)
+        {
+            var parameter = Expression.Parameter(typeof(T), "x");
+            var property = Expression.Property(parameter, key);
+            var constant = Expression.Constant(value);
+            var equality = Expression.Equal(property, constant);
+
+            var idProperty = Expression.Property(parameter, "Id");
+            var idEquality = Expression.NotEqual(idProperty, Expression.Constant(id));
+
+            var combinedExpression = Expression.AndAlso(equality, idEquality);
+            var lambda = Expression.Lambda<Func<T, bool>>(combinedExpression, parameter);
+
+            return await _dbContext.Set<T>().AnyAsync(lambda);
+        }
+
 
         public async Task<T> Create(T model)
         {
@@ -56,5 +88,6 @@ namespace Project.Infrastructure.Repositories
         {
             await _dbContext.SaveChangesAsync();
         }
+
     }
 }
