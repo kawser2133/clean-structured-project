@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.Core.Interfaces.IRepositories
 {
+    //Unit of Work Pattern
     public interface IBaseRepository<T> where T : class
     {
         Task<IEnumerable<T>> GetAll();

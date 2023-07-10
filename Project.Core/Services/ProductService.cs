@@ -1,4 +1,5 @@
 ﻿using Project.Core.Entities.General;
+using Project.Core.Exceptions;
 using Project.Core.Interfaces.IMapper;
 using Project.Core.Interfaces.IRepositories;
 using Project.Core.Interfaces.IServices;
@@ -38,6 +39,7 @@ namespace Project.Core.Services
 
         public async Task<ProductViewModel> Create(ProductViewModel model)
         {
+            //Mapping through AutoMapper
             var entity = _productMapper.MapModel(model);
             entity.EntryDate = DateTime.Now;
 
@@ -46,10 +48,17 @@ namespace Project.Core.Services
 
         public async Task Update(ProductViewModel model)
         {
-            var entity = _productMapper.MapModel(model);
-            entity.UpdateDate = DateTime.Now;
+            var existingData = await _productRepository.GetById(model.Id);
 
-            await _productRepository.Update(entity);
+            //Manual mapping
+            existingData.Code = model.Code;
+            existingData.Name = model.Name;
+            existingData.Price = model.Price;
+            existingData.Description = model.Description;
+            existingData.IsActive = model.IsActive;
+            existingData.UpdateDate = DateTime.Now;
+
+            await _productRepository.Update(existingData);
         }
 
         public async Task Delete(int id)

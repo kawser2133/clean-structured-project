@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Project.Infrastructure.Repositories
 {
+    //Unit of Work Pattern
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly ApplicationDbContext _dbContext;
@@ -21,7 +22,7 @@ namespace Project.Infrastructure.Repositories
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetById<Tid>(Tid id)

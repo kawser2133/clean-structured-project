@@ -28,11 +28,22 @@
                         <td>@item.Code</td>
                         <td>@item.Name</td>
                         <td>@item.Price</td>
-                        <td>@item.IsActive</td>
+
                         <td>
-                            <button class="btn btn-outline-info">Details</button>
-                            <button class="btn btn-outline-primary">Edit</button>
-                            <button class="btn btn-outline-danger">Delete</button>
+                            @if (@item.IsActive)
+                            {
+                                <span>Yes</span>
+                            }
+                            else
+                            {
+                                <span>No</span>
+                            }
+                        </td>
+
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 }
