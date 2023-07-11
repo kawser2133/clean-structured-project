@@ -80,7 +80,8 @@ namespace Project.UI.Controllers
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"An error occurred while adding the product");
-                    return StatusCode(500, ex.Message);
+                    ModelState.AddModelError("Error", $"An error occurred while adding the product- " + ex.Message);
+                    return View(model);
                 }
             }
             return View(model);
@@ -127,7 +128,8 @@ namespace Project.UI.Controllers
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"An error occurred while updating the product");
-                    return StatusCode(500, ex.Message);
+                    ModelState.AddModelError("Error", $"An error occurred while updating the product- " + ex.Message);
+                    return View(model);
                 }
             }
             return View(model);

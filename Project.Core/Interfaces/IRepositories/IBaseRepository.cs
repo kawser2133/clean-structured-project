@@ -13,7 +13,7 @@ namespace Project.Core.Interfaces.IRepositories
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById<Tid>(Tid id);
-        Task<bool> IsExists(string key, string value);
+        Task<bool> IsExists<Tvalue>(string key, Tvalue value);
         Task<bool> IsExistsForUpdate<Tid>(Tid id, string key, string value);
         Task<T> Create(T model);
         Task Update(T model);

@@ -20,10 +20,10 @@ namespace Project.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            ApplicationDbContextConfigurations.Configure(builder);
+            ApplicationDbContextConfigurations.SeedData(builder);
 
-            builder.Entity<IdentityUser>().ToTable("Users");
-            builder.Entity<IdentityRole>().ToTable("Roles");
+            base.OnModelCreating(builder);
         }
 
     }

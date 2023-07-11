@@ -1,15 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Project.Core.Exceptions;
 using Project.Core.Interfaces.IRepositories;
 using Project.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.Infrastructure.Repositories
 {
@@ -37,7 +30,7 @@ namespace Project.Infrastructure.Repositories
             return data;
         }
 
-        public async Task<bool> IsExists(string key, string value)
+        public async Task<bool> IsExists<Tvalue>(string key, Tvalue value)
         {
             var parameter = Expression.Parameter(typeof(T), "x");
             var property = Expression.Property(parameter, key);
