@@ -18,6 +18,26 @@ namespace Project.UI.Controllers
         }
 
         // GET: ProductController
+        public async Task<IActionResult> PaginatedIndex(int? page)
+        {
+            try
+            {
+                int pageSize = 10;
+                int pageNumber = (page ?? 1);
+
+                var products = await _productService.GetPaginatedProducts(pageNumber, pageSize);
+
+                return View(products);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while retrieving products");
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        // GET: ProductController
         public async Task<IActionResult> Index()
         {
             try

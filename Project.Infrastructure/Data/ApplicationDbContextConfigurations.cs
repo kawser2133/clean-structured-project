@@ -22,7 +22,6 @@ namespace Project.Infrastructure.Data
         public static void SeedData(ModelBuilder modelBuilder)
         {
             // Add any seed data here
-
             modelBuilder.Entity<Product>().HasData(
                 new Product { Id = 1, Code = "P001", Name = "Product 1", Price = 9.99f, IsActive = true },
                 new Product { Id = 2, Code = "P002", Name = "Product 2", Price = 12.00f, IsActive = true },
@@ -35,6 +34,8 @@ namespace Project.Infrastructure.Data
                 new Product { Id = 9, Code = "P009", Name = "Product 9", Price = 19.00f, IsActive = true },
                 new Product { Id = 10, Code = "P010", Name = "Product 10", Price = 19.99f, IsActive = true }
             );
+
         }
+
     }
 }

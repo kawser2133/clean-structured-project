@@ -32,6 +32,11 @@ namespace Project.Core.Services
             return _productViewModelMapper.MapList(await _productRepository.GetAll());
         }
 
+        public async Task<IEnumerable<ProductViewModel>> GetPaginatedProducts(int pageNumber, int pageSize)
+        {
+            return _productViewModelMapper.MapList(await _productRepository.GetPaginatedData(pageNumber, pageSize));
+        }
+
         public async Task<ProductViewModel> GetProduct(int id)
         {
             return _productViewModelMapper.MapModel(await _productRepository.GetById(id));

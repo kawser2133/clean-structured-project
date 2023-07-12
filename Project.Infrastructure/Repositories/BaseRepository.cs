@@ -22,6 +22,15 @@ namespace Project.Infrastructure.Repositories
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetPaginatedData(int pageNumber, int pageSize)
+        {
+            return await _dbContext.Set<T>()
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
         public async Task<T> GetById<Tid>(Tid id)
         {
             var data = await _dbContext.Set<T>().FindAsync(id);
