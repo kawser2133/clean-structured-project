@@ -16,7 +16,10 @@ namespace Project.Infrastructure.Data
         {
         }
 
+        #region DbSet Section
         public DbSet<Product> Products { get; set; }
+
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -50,6 +50,7 @@ namespace Project.Infrastructure.Repositories
             return await _dbContext.Set<T>().AnyAsync(lambda);
         }
 
+        //Before update existence check
         public async Task<bool> IsExistsForUpdate<Tid>(Tid id, string key, string value)
         {
             var parameter = Expression.Parameter(typeof(T), "x");
