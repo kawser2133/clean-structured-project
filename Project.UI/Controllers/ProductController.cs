@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Project.Core.Entities.General;
 using Project.Core.Interfaces.IServices;
+using X.PagedList;
 
 namespace Project.UI.Controllers
 {
@@ -17,7 +19,30 @@ namespace Project.UI.Controllers
         }
 
         // GET: ProductController
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
+        {
+            try
+            {
+                int pageSize = 4;
+                int pageNumber = (page ?? 1);
+
+                var products = await _productService.GetPaginatedProducts(pageNumber, pageSize);
+
+                // Convert the list of products to an instance of IPagedList<ProductViewModel>
+                var pagedProducts = new StaticPagedList<ProductViewModel>(products.Data, pageNumber, pageSize, products.TotalCount);
+
+                return View(pagedProducts);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while retrieving products");
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+        //GET: ProductController
+        public async Task<IActionResult> IndexWithoutPagination()
         {
             try
             {
@@ -59,6 +84,18 @@ namespace Project.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _productService.IsExists("Name", model.Name))
+                {
+                    ModelState.AddModelError("Exists", $"The product name- '{model.Name}' already exists");
+                    return View(model);
+                }
+
+                if (await _productService.IsExists("Code", model.Code))
+                {
+                    ModelState.AddModelError("Exists", $"The product code- '{model.Code}' already exists");
+                    return View(model);
+                }
+
                 try
                 {
                     var data = await _productService.Create(model);
@@ -67,7 +104,8 @@ namespace Project.UI.Controllers
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"An error occurred while adding the product");
-                    return StatusCode(500, ex.Message);
+                    ModelState.AddModelError("Error", $"An error occurred while adding the product- " + ex.Message);
+                    return View(model);
                 }
             }
             return View(model);
@@ -94,6 +132,18 @@ namespace Project.UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _productService.IsExistsForUpdate(model.Id, "Name", model.Name))
+                {
+                    ModelState.AddModelError("Exists", $"The product name- '{model.Name}' already exists");
+                    return View(model);
+                }
+
+                if (await _productService.IsExistsForUpdate(model.Id, "Code", model.Code))
+                {
+                    ModelState.AddModelError("Exists", $"The product code- '{model.Code}' already exists");
+                    return View(model);
+                }
+
                 try
                 {
                     await _productService.Update(model);
@@ -102,7 +152,8 @@ namespace Project.UI.Controllers
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"An error occurred while updating the product");
-                    return StatusCode(500, ex.Message);
+                    ModelState.AddModelError("Error", $"An error occurred while updating the product- " + ex.Message);
+                    return View(model);
                 }
             }
             return View(model);
