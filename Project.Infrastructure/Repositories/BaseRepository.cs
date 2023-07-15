@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project.Core.Entities.Business;
 using Project.Core.Exceptions;
 using Project.Core.Interfaces.IRepositories;
 using Project.Infrastructure.Data;
@@ -21,14 +22,18 @@ namespace Project.Infrastructure.Repositories
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
-
-        public async Task<IEnumerable<T>> GetPaginatedData(int pageNumber, int pageSize)
+       
+        public async Task<PaginatedDataViewModel<T>> GetPaginatedData(int pageNumber, int pageSize)
         {
-            return await _dbContext.Set<T>()
+            var query = _dbContext.Set<T>()
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .AsNoTracking()
-                .ToListAsync();
+                .AsNoTracking();
+
+            var data = await query.ToListAsync();
+            var totalCount = await _dbContext.Set<T>().CountAsync();
+
+            return new PaginatedDataViewModel<T>(data, totalCount);
         }
 
         public async Task<T> GetById<Tid>(Tid id)

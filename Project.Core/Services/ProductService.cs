@@ -1,4 +1,5 @@
-﻿using Project.Core.Entities.General;
+﻿using Project.Core.Entities.Business;
+using Project.Core.Entities.General;
 using Project.Core.Exceptions;
 using Project.Core.Interfaces.IMapper;
 using Project.Core.Interfaces.IRepositories;
@@ -32,9 +33,14 @@ namespace Project.Core.Services
             return _productViewModelMapper.MapList(await _productRepository.GetAll());
         }
 
-        public async Task<IEnumerable<ProductViewModel>> GetPaginatedProducts(int pageNumber, int pageSize)
+        public async Task<PaginatedDataViewModel<ProductViewModel>> GetPaginatedProducts(int pageNumber, int pageSize)
         {
-            return _productViewModelMapper.MapList(await _productRepository.GetPaginatedData(pageNumber, pageSize));
+            var paginatedData = await _productRepository.GetPaginatedData(pageNumber, pageSize);
+            var mappedData = _productViewModelMapper.MapList(paginatedData.Data);
+
+            var paginatedDataViewModel = new PaginatedDataViewModel<ProductViewModel>(mappedData.ToList(), paginatedData.TotalCount);
+            
+            return paginatedDataViewModel;
         }
 
         public async Task<ProductViewModel> GetProduct(int id)

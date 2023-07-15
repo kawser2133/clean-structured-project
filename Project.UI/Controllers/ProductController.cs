@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Project.Core.Entities.General;
 using Project.Core.Interfaces.IServices;
+using X.PagedList;
 
 namespace Project.UI.Controllers
 {
@@ -18,16 +19,19 @@ namespace Project.UI.Controllers
         }
 
         // GET: ProductController
-        public async Task<IActionResult> PaginatedIndex(int? page)
+        public async Task<IActionResult> Index(int? page)
         {
             try
             {
-                int pageSize = 10;
+                int pageSize = 4;
                 int pageNumber = (page ?? 1);
 
                 var products = await _productService.GetPaginatedProducts(pageNumber, pageSize);
 
-                return View(products);
+                // Convert the list of products to an instance of IPagedList<ProductViewModel>
+                var pagedProducts = new StaticPagedList<ProductViewModel>(products.Data, pageNumber, pageSize, products.TotalCount);
+
+                return View(pagedProducts);
             }
             catch (Exception ex)
             {
@@ -37,8 +41,8 @@ namespace Project.UI.Controllers
 
         }
 
-        // GET: ProductController
-        public async Task<IActionResult> Index()
+        //GET: ProductController
+        public async Task<IActionResult> IndexWithoutPagination()
         {
             try
             {
