@@ -41,7 +41,7 @@ namespace Project.UnitTest.UI
                                .ReturnsAsync(products);
 
             // Act
-            var result = await _productController.Index();
+            var result = await _productController.IndexWithoutPagination();
 
             // Assert
             Assert.IsInstanceOf<ViewResult>(result);

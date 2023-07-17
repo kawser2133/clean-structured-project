@@ -26,9 +26,10 @@ namespace Project.UI.Controllers
                 int pageSize = 4;
                 int pageNumber = (page ?? 1);
 
+                //Get peginated data
                 var products = await _productService.GetPaginatedProducts(pageNumber, pageSize);
 
-                // Convert the list of products to an instance of IPagedList<ProductViewModel>
+                // Convert the list of products to an instance of StaticPagedList<ProductViewModel>>
                 var pagedProducts = new StaticPagedList<ProductViewModel>(products.Data, pageNumber, pageSize, products.TotalCount);
 
                 return View(pagedProducts);
