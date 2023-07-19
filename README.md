@@ -1,6 +1,6 @@
 # Clean Structured Project - ASP.NET Core
 
-This template is for a clean structured ASP.NET Core web project, follows the Clean Architecture principles, SOLID design principles, and implements the Dependency Injection, Repository, and Unit of Work design pattern, and utilizes Entity Framework Core for data access. It provides a standardized structure and organization for building robust and maintainable ASP.NET Core web applications with complete CRUD (Create, Read, Update, Delete) operations.
+This template is for a clean structured ASP.NET Core web project, follows the Clean Architecture principles, SOLID design principles, implements the Dependency Injection, Repository, and Unit of Work design pattern, and utilizes Entity Framework Core for data access. It provides a standardized structure and organization for building robust and maintainable ASP.NET Core web applications with complete CRUD (Create, Read, Update, Delete) operations.
 
 ## Project Structure
 
@@ -36,7 +36,7 @@ This project template includes the following features:
 
 - **Clean Architecture**: The project is structured according to the principles of Clean Architecture, which promotes separation of concerns and a clear division of responsibilities.
 - **SOLID Design Principles**: The code adheres to SOLID principles (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion), making it easier to maintain and extend.
-- **Repository Pattern**: The repository pattern is used to abstract the data access layer and provide a consistent interface for working with data.
+- **Repository Pattern**: The repository pattern abstracts the data access layer and provides a consistent interface for working with data.
 - **Unit of Work Pattern**: The unit of work pattern helps manage transactions and ensures consistency when working with multiple repositories.
 - **Entity Framework Core**: The project utilizes Entity Framework Core as the ORM (Object-Relational Mapping) tool for data access.
 - **ASP.NET Core Web**: The project includes an ASP.NET Core web project that serves as the user interface layer, handling HTTP requests and responses.
