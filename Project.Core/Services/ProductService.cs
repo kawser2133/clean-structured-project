@@ -35,7 +35,10 @@ namespace Project.Core.Services
 
         public async Task<PaginatedDataViewModel<ProductViewModel>> GetPaginatedProducts(int pageNumber, int pageSize)
         {
+            //Get peginated data
             var paginatedData = await _productRepository.GetPaginatedData(pageNumber, pageSize);
+            
+            //Map data with ViewModel
             var mappedData = _productViewModelMapper.MapList(paginatedData.Data);
 
             var paginatedDataViewModel = new PaginatedDataViewModel<ProductViewModel>(mappedData.ToList(), paginatedData.TotalCount);
