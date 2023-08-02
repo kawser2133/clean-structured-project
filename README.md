@@ -8,9 +8,9 @@ The project structure is designed to promote separation of concerns and modulari
 
 ```
 ├── src
-│   ├── Core                    # Contains the core business logic and domain models, etc.
+│   ├── Core                    # Contains the core business logic, domain models, view models, etc.
 │   ├── Infrastructure          # Contains infrastructure concerns such as data access, external services, etc.
-│   └── UI                      # Contains the user interface layer, including controllers, views, and extensions, etc.
+│   └── UI                      # Contains the user interface layer, including controllers, views, extensions, etc.
 ├── tests
 │   ├── Core.Tests              # Contains unit tests for the core layer
 │   ├── Infrastructure.Tests    # Contains unit tests for the infrastructure layer
@@ -22,12 +22,12 @@ The project structure is designed to promote separation of concerns and modulari
 
 To use this project template, follow the steps below:
 
-1. Ensure that you have the .NET 7 SDK installed on your machine.
+1. Ensure the .NET 7 SDK is installed on your machine.
 2. Clone or download this repository to your local machine.
 3. Open the solution in your preferred IDE (e.g., Visual Studio, Visual Studio Code).
 4. Build the solution to restore NuGet packages and compile the code.
 5. Configure the necessary database connection settings in the `appsettings.json` file of the Infrastructure project.
-6. Open the Package Manager Console, select `Project.Infrastructure` project and run the `Update-Database` command to create the database
+6. Open the Package Manager Console, select `Project.Infrastructure` project, and run the `Update-Database` command to create the database
 7. Run the application by starting the `Project.UI` project.
 
 ## Project Features
