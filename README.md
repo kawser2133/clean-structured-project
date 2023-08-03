@@ -2,6 +2,9 @@
 
 This template is for a clean structured ASP.NET Core web project, follows the Clean Architecture principles, SOLID design principles, implements the Dependency Injection, Repository, and Unit of Work design pattern, and utilizes Entity Framework Core for data access. It provides a standardized structure and organization for building robust and maintainable ASP.NET Core web applications with complete CRUD (Create, Read, Update, Delete) operations.
 
+### Reference
+You can visit my blog post- [Clean Structured Project – ASP.NET Core](https://binarybytez.com/clean-structured-project/)
+
 ## Project Structure
 
 The project structure is designed to promote separation of concerns and modularity, making it easier to understand, test, and maintain the application.
