@@ -44,7 +44,7 @@ This project template includes the following features:
 - **Entity Framework Core**: The project utilizes Entity Framework Core as the ORM (Object-Relational Mapping) tool for data access.
 - **ASP.NET Core Web**: The project includes an ASP.NET Core web project that serves as the user interface layer, handling HTTP requests and responses.
 - **CRUD Operations**: The project template provides a foundation for implementing complete CRUD (Create, Read, Update, Delete) operations on entities using Entity Framework Core.
-- **Dependency Injection**: The project utilizes the built-in dependency injection container in ASP.NET Core, making it easy to manage and inject dependencies throughout the application.
+- **Dependency Injection**: The project utilizes the built-in [dependency injection](https://binarybytez.com/understanding-dependency-injection/) container in ASP.NET Core, making it easy to manage and inject dependencies throughout the application.
 - **Unit Testing**: The solution includes separate test projects for unit testing the core, infrastructure, and UI layers.
 
 ## Usage
