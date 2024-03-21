@@ -56,7 +56,7 @@ The project template provides a starting point for implementing CRUD operations 
 3. **Services**: The `Core` project contains services that encapsulate the business logic and orchestrate the operations on repositories. Update or create new services to handle CRUD operations on your entities.
 4. **Controllers**: The `UI` project contains controllers that handle HTTP requests and responses. Update or create new controllers to expose the CRUD endpoints for your entities.
 
-Make sure to update the routes, validation, and error-handling logic to align with your application requirements and best practices.
+Make sure to update the routes, validation, and error-handling logic to align with your application requirements and [best practices](https://binarybytez.com/performance-optimization-and-monitoring-in-asp-net-core/).
 
 ## Authors
 
